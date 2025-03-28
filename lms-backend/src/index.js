@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import {PORT} from "./config/config.js";
 import connectDB from './config/dbConnect.js';
+import apiRoutes from "./routes/index.js";
+
 
 config({path:'./.env'});
 
@@ -20,7 +22,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
-
+app.use('/api/', apiRoutes);
 
 
 app.get('/', (req, res) => {
